@@ -3,7 +3,7 @@
 client_id = "8ca8a34581a6fcfa87cd9467e146c165"
 name = "receipt-upload"
 handle = "receipt-upload"
-application_url = "https://basic-immigration-transition-flex.trycloudflare.com"
+application_url = "https://receipt-upload.fly.dev"
 embedded = true
 
 [build]
@@ -17,9 +17,7 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://basic-immigration-transition-flex.trycloudflare.com/auth/callback",
-  "https://basic-immigration-transition-flex.trycloudflare.com/auth/shopify/callback",
-  "https://basic-immigration-transition-flex.trycloudflare.com/api/auth/callback"
+  "https://receipt-upload.fly.dev/api/auth/callback"
 ]
 
 [webhooks]
