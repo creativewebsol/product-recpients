@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for receipt-upload on 2024-09-18T16:33:58+05:00
+# fly.toml app configuration file generated for product-recpients on 2024-09-18T20:45:18+05:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'receipt-upload'
+app = 'product-recpients'
 primary_region = 'sin'
 
 [build]

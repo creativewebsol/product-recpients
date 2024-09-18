@@ -3,7 +3,7 @@
 client_id = "8ca8a34581a6fcfa87cd9467e146c165"
 name = "receipt-upload"
 handle = "receipt-upload"
-application_url = "https://receipt-upload.fly.dev"
+application_url = "https://product-recpients.fly.dev"
 embedded = true
 
 [build]
@@ -17,7 +17,7 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://receipt-upload.fly.dev/api/auth/callback"
+  "https://product-recpients.fly.dev/auth/callback"
 ]
 
 [webhooks]
