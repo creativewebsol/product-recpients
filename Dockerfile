@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:22.9.0-alpine
 
 EXPOSE 3000
 
@@ -17,4 +17,4 @@ COPY . .
 
 RUN npm run build
 
-CMD ["npm", "run", "docker-start"]
+CMD ["npm", "start","run", "docker-start"]
