@@ -3,7 +3,7 @@
 client_id = "8ca8a34581a6fcfa87cd9467e146c165"
 name = "receipt-upload"
 handle = "receipt-upload"
-application_url = "https://product-recpients.fly.dev"
+application_url = "https://locator-hybrid-extremely-photographers.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,7 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://product-recpients.fly.dev/auth/callback"
+  "https://locator-hybrid-extremely-photographers.trycloudflare.com/auth/callback",
+  "https://locator-hybrid-extremely-photographers.trycloudflare.com/auth/shopify/callback",
+  "https://locator-hybrid-extremely-photographers.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
