@@ -10,7 +10,7 @@ primary_region = 'sin'
   NODE_ENV = "production"
   SHOPIFY_API_KEY = "8ca8a34581a6fcfa87cd9467e146c165"
   SHOPIFY_API_SECRET = "8294086081f4996774049f155c49c4b8"
-  SHOPIFY_SCOPES = "write_products, read_orders"
+  SHOPIFY_SCOPES = "write_products"
   SHOPIFY_APP_URL = "https://product-recpients.fly.dev"
 
 
