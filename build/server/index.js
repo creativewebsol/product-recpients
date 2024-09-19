@@ -7,12 +7,19 @@ import { createReadableStreamFromReadable, json, redirect } from "@remix-run/nod
 import { isbot } from "isbot";
 import "@shopify/shopify-app-remix/adapters/node";
 import { shopifyApp, ApiVersion, AppDistribution, LoginErrorType, boundary } from "@shopify/shopify-app-remix/server";
-import "@shopify/shopify-app-session-storage-prisma";
+import { PrismaSessionStorage } from "@shopify/shopify-app-session-storage-prisma";
 import { restResources } from "@shopify/shopify-api/rest/admin/2024-07";
+import { PrismaClient } from "@prisma/client";
 import { Page, Layout, Card, BlockStack, Text, Link, List, Box, Frame, DataTable, InlineStack, Button, AppProvider, FormLayout, TextField } from "@shopify/polaris";
 import { TitleBar, useAppBridge, NavMenu } from "@shopify/app-bridge-react";
 import { useState, useEffect } from "react";
 import { AppProvider as AppProvider$1 } from "@shopify/shopify-app-remix/react";
+const prisma = global.prisma || new PrismaClient();
+if (process.env.NODE_ENV !== "production") {
+  if (!global.prisma) {
+    global.prisma = new PrismaClient();
+  }
+}
 const shopify = shopifyApp({
   apiKey: process.env.SHOPIFY_API_KEY,
   apiSecretKey: process.env.SHOPIFY_API_SECRET || "",
@@ -20,7 +27,7 @@ const shopify = shopifyApp({
   scopes: (_a = process.env.SCOPES) == null ? void 0 : _a.split(","),
   appUrl: process.env.SHOPIFY_APP_URL || "",
   authPathPrefix: "/auth",
-  //sessionStorage: new PrismaSessionStorage(prisma),
+  sessionStorage: new PrismaSessionStorage(prisma),
   distribution: AppDistribution.AppStore,
   restResources,
   future: {
@@ -34,6 +41,7 @@ const authenticate = shopify.authenticate;
 shopify.unauthenticated;
 const login = shopify.login;
 shopify.registerWebhooks;
+shopify.sessionStorage;
 const ABORT_DELAY = 5e3;
 async function handleRequest(request, responseStatusCode, responseHeaders, remixContext) {
   addDocumentResponseHeaders(request, responseHeaders);
@@ -972,6 +980,9 @@ const action = async ({ request }) => {
   }
   switch (topic) {
     case "APP_UNINSTALLED":
+      if (session) {
+        await prisma.session.deleteMany({ where: { shop } });
+      }
       break;
     case "CUSTOMERS_DATA_REQUEST":
     case "CUSTOMERS_REDACT":
