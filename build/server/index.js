@@ -9,7 +9,7 @@ import "@shopify/shopify-app-remix/adapters/node";
 import { shopifyApp, ApiVersion, AppDistribution, LoginErrorType, boundary } from "@shopify/shopify-app-remix/server";
 import { PrismaSessionStorage } from "@shopify/shopify-app-session-storage-prisma";
 import { restResources } from "@shopify/shopify-api/rest/admin/2024-07";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client/edge";
 import { Page, Layout, Card, BlockStack, Text, Link, List, Box, Frame, DataTable, InlineStack, Button, AppProvider, FormLayout, TextField } from "@shopify/polaris";
 import { TitleBar, useAppBridge, NavMenu } from "@shopify/app-bridge-react";
 import { useState, useEffect } from "react";
